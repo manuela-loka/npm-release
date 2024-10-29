@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "qrcode": "^1.5.4",
-    "requests": "^0.3.0"
+    "requests": "^0.3.0",
+    "semantic-release": "^24.2.0"
   }
 }
