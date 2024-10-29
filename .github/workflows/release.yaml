@@ -37,6 +37,8 @@ jobs:
 
       - name: Retrieve previous version and build number
         id: get-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Use `semantic-release` to get the latest version
           npx semantic-release --dry-run | grep -oP "(?<=The next release version is ).*"
