@@ -8,7 +8,7 @@ exports.formatData = (data) => {
 exports.generateQRCode = async (qrCodeText) => {
     const options = {
         errorCorrectionLevel: 'M',
-        type: 'image/png',
+        type: 'image/jpg',
         margin: 1
     };
 
