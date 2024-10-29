@@ -1,5 +1,3 @@
-//service.js
-
 const QRCode = require('qrcode');
 
 exports.formatData = (data) => {

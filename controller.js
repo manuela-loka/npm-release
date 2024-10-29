@@ -1,5 +1,3 @@
-//controller.js
-
 const service = require('./service');
 
 exports.generateQR = async (req, res) => {
