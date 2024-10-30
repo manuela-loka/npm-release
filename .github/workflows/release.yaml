@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - test
 
 env:
   NODE_VERSION: "20"
@@ -80,8 +80,3 @@ jobs:
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           commit_message: "Reset build number"
-
-      # - name: Release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: npx semantic-release -tag-format v${version}+
