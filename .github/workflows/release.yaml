@@ -55,7 +55,7 @@ jobs:
           NEW_BUILD=$((CURRENT_BUILD + 1))
           echo "New build number: $NEW_BUILD"
           
-          jq ".custom_entries.build_number = $new_build" package.json > package.tmp.json && mv package.tmp.json package.json
+          jq ".custom_entries.build_number = $NEW_BUILD" package.json > package.tmp.json && mv package.tmp.json package.json
 
       - name: Commit new build
         if: ${{ env.new_version == '' }} && ${{ env.build_number != '' }}
