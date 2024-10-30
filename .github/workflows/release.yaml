@@ -55,11 +55,11 @@ jobs:
           NEW_BUILD=$((CURRENT_BUILD + 1))
           echo "New build number: $NEW_BUILD"
           echo "build_number=$NEW_BUILD" >> $GITHUB_ENV
-          
+
           jq ".custom_entries.build_number = $NEW_BUILD" package.json > package.tmp.json && mv package.tmp.json package.json
 
       - name: Commit new build
-        if: ${{ env.new_version == '' }} && ${{ env.build_number != '' }}
+        if: ${{ env.new_version == '' && env.build_number != '' }}
         uses: devops-infra/action-commit-push@v0.9.2
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
