@@ -45,7 +45,7 @@ jobs:
           echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
           echo $NEW_VERSION
 
-      - run: echo "the version is ${{ env.NEW_VERSION }}"
+      - run: echo "the version is ${{ env.new_version }}"
 
       # - name: Release
       #   env:
