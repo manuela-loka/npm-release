@@ -39,7 +39,9 @@ jobs:
         id: get-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --dry-run
+        run: | 
+          NEW_VERSION=$(npx semantic-release --dry-run | grep -oP "(?<=The next release version is ).*") || NEW_VERSION=""
+          echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
 
       # - name: Release
       #   env:
