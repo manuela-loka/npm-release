@@ -71,6 +71,7 @@ jobs:
         run: |
           echo "Version retrieval succeeded. New version ${{ env.new_version }} will be released."
           npx semantic-release
+          jq ".custom_entries.build_number = 1" package.json > package.tmp.json && mv package.tmp.json package.json
 
       # - name: Release
       #   env:
