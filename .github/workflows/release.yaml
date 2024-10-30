@@ -35,29 +35,29 @@ jobs:
       - name: Install dependencies
         run: npm clean-install
 
-      - name: Retrieve previous version and build number
-        id: get-version
+      - name: Check for new releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           NEW_VERSION=$(npx semantic-release --dry-run | grep -oP "(?<=The next release version is )\S*")
-          # NEW_VERSION=$(npx semantic-release --dry-run | grep -oP "(?<=The next release version is ).*") || NEW_VERSION=""
           echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
           echo $NEW_VERSION
         continue-on-error: true
 
       - run: echo "the version is ${{ env.new_version }}"
 
-      - name: Check version retrieval
+      - name: Increment build if no new version is created
         if: ${{ env.new_version == '' }}
-        run: echo "Version retrieval failed. No new version is created."
+        run: |
+          current_build=$(jq '.custom_entries.build_number' package.json)
+          echo "Current build number: $current_build"
 
-      - name: Process retrieved version
+      - name: Process new version
         if: ${{ env.new_version != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Version retrieval succeeded. Performing Y actions with version ${{ env.new_version }}."
+          echo "Version retrieval succeeded. New version ${{ env.new_version }} will be released."
           npx semantic-release
 
       # - name: Release
