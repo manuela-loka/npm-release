@@ -54,7 +54,9 @@ jobs:
 
       - name: Process retrieved version
         if: ${{ env.new_version != '' }}
-        run: echo "Version retrieval succeeded. Performing Y actions with version ${{ env.new_version }}."
+        run: |
+          echo "Version retrieval succeeded. Performing Y actions with version ${{ env.new_version }}."
+          npx semantic-release
 
       # - name: Release
       #   env:
