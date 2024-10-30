@@ -52,6 +52,9 @@ jobs:
           current_build=$(jq '.custom_entries.build_number' package.json)
           echo "Current build number: $current_build"
 
+          new_build=$((current_build + 1))
+          echo "New build number: $new_build"
+
       - name: Process new version
         if: ${{ env.new_version != '' }}
         env:
