@@ -50,7 +50,7 @@ jobs:
 
       - name: Check version retrieval
         if: ${{ env.new_version == '' }}
-        run: echo "Version retrieval failed. Performing X action."
+        run: echo "Version retrieval failed. No new version."
 
       - name: Process retrieved version
         if: ${{ env.new_version != '' }}
