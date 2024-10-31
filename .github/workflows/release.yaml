@@ -78,6 +78,7 @@ jobs:
           jq ".custom_entries.build_number = 1" package.json > package.tmp.json && mv package.tmp.json package.json
 
       - name: Reset build when new version
+        if: ${{ env.new_version != '' }}
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
