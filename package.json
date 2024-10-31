@@ -3,7 +3,7 @@
   "version": "4.0.4",
   "main": "index.js",
   "custom_entries": {
-    "build_number": 2
+    "build_number": 3
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
