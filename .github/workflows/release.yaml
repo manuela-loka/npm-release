@@ -61,10 +61,12 @@ jobs:
 
       - name: Commit new build
         if: ${{ env.new_version == '' && env.build_number != '' }}
-        uses: devops-infra/action-commit-push@v0.9.2
-        with:
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          commit_message: "Increment build number"
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "[skip ci] incremented build number"
+          git push
 
       - name: Process new version
         if: ${{ env.new_version != '' }}
@@ -75,15 +77,10 @@ jobs:
           npx semantic-release
           jq ".custom_entries.build_number = 1" package.json > package.tmp.json && mv package.tmp.json package.json
 
-      - name: Commit and push
+      - name: Reset build when new version
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Test"
+          git commit -m "[skip ci] reset build number"
           git push
-      # - name: Reset build when new version
-      #   if: ${{ env.new_version != '' }}
-      #   uses: devops-infra/action-commit-push@v0.9.2
-      #   with:
-      #     commit_message: "Reset build number"
