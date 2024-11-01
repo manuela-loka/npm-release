@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "4.2.1",
+  "version": "0.0.0",
   "main": "index.js",
   "custom_entries": {
     "build_number": 1
