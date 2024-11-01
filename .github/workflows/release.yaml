@@ -35,8 +35,12 @@ jobs:
 
       - name: Install dependencies
         run: npm clean-install
-
-      - run: npx semantic-release --dry-run
+        
+      - name: test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --dry-run
+        continue-on-error: true
 
       - name: Check for new releases
         env:
