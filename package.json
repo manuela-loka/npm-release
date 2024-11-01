@@ -1,9 +1,9 @@
 {
   "name": "server",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "main": "index.js",
   "custom_entries": {
-    "build_number": 3
+    "build_number": 1
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
