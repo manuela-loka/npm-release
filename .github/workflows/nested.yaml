@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.sha }}
+          ref: ${{ inputs.fe-version }}
 
-      - run: echo "${{ github.event.inputs.fe-version }}"
+      - name: Verify checkout
+        run: git log --oneline -1
